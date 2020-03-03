@@ -10,7 +10,7 @@ namespace MyBetService
     public interface IService
     {
         [OperationContract]
-        int CheckRegUser(User u);
+        bool CheckRegUser(User u);
 
         [OperationContract]
         int RegistrationNewUser(User user);

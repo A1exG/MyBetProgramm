@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyBetService;
 
 namespace MyBetView
 {
@@ -23,6 +24,9 @@ namespace MyBetView
         public MainWindow()
         {
             InitializeComponent();
+            Service service = new Service();
+            var eventSource = service.GetEvent();
+            dgvEvents.ItemsSource = eventSource;
         }
     }
 }
