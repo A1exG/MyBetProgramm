@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MyBetModel.Model;
 
 namespace MyBetService
@@ -19,16 +14,15 @@ namespace MyBetService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=DbTestTask;Integrated Security=True;");
+                @"Server=TECH-COMP3\SQLEXPRESS;Database=DbTestTask;Integrated Security=True;");
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bet>().ToTable("Bets").HasKey(p => p.BetId).HasName("PrimaryKey_BlogId"); 
-            modelBuilder.Entity<EventBet>().ToTable("Events").HasKey(p => p.EventId).HasName("PrimaryKey_EventId");
-            modelBuilder.Entity<Result>().ToTable("Results").HasKey(p => p.ResultId).HasName("PrimaryKey_ResultId");
-            modelBuilder.Entity<User>().ToTable("Users").HasKey(p => p.UserId).HasName("PrimaryKey_UserId");
-            modelBuilder.Entity<History>().ToTable("History").HasKey(p => p.EventId).HasName("PrimaryKey_EventId");
+            modelBuilder.Entity<Bet>().ToTable("Bets").HasKey(p => p.BetId);
+            modelBuilder.Entity<EventBet>().ToTable("Events").HasKey(p => p.EventId);
+            modelBuilder.Entity<Result>().ToTable("Results").HasKey(p => p.ResultId);
+            modelBuilder.Entity<User>().ToTable("Users").HasKey(p => p.UserId);
+            modelBuilder.Entity<History>().ToTable("History").HasKey(p => p.EventId);
         }
     }
 }

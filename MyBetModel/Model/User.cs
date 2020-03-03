@@ -25,5 +25,11 @@ namespace MyBetModel.Model
         public string UserPass { get; set; }
         [DataMember]
         internal virtual ICollection<Bet> Bets { get; set; }
+
+        public User(string userLogin, string userPass)
+        {
+            UserLogin = userLogin;
+            UserPass = userPass;
+        }
     }
 }

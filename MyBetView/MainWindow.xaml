@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyBetView"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Вход в программу" Height="211" Width="302.167">
     <Grid>
-        <DataGrid x:Name="dgvEvents" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="772"/>
-
+        <Label Content="Логин :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,38,0,0" Width="57"/>
+        <Label Content="Пароль :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,64,0,0"/>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="26" Margin="120,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtPass" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="120,64,0,0"/>
+        <Button Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="104,95,0,0" Click="Button_Click"/>
+        <Button Content="Регистрация" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="104,120,0,0"/>
     </Grid>
 </Window>
