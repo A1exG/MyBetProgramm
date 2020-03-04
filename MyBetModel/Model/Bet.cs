@@ -33,5 +33,15 @@ namespace MyBetModel.Model
 
         [DataMember]
         public string Team { get; set; }
+        public Bet(DateTime dateBet, decimal sumBet, decimal coefBet, decimal sumWinBet, int userId, int eventId, string team)
+        {
+            DateBet = dateBet;
+            SumBet = sumBet;
+            CoefBet = coefBet;
+            SumWinBet = sumWinBet;
+            UserId = userId;
+            EventId = eventId;
+            Team = team;
+        }
     }
 }

@@ -18,15 +18,17 @@ namespace MyBetView.Ui
 {
     public partial class Main : Window
     {
+        private readonly IList<User> check;
         public Main(IList<User> check)
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            this.check = check;
         }
 
         private void btnEvent_Click(object sender, RoutedEventArgs e)
         {
-            var events = new EventsUi();
+            var events = new EventsUi(check);
             events.Owner = this;
             events.ShowDialog();
         }
