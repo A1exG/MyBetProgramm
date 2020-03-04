@@ -36,5 +36,12 @@ namespace MyBetView
                 MessageBox.Show("Что то пошло не так");
             } 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            RegistrationUser regUser = new RegistrationUser();
+            regUser.Owner = this;
+            regUser.ShowDialog();
+        }
     }
 }

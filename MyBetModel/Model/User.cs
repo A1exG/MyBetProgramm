@@ -31,5 +31,15 @@ namespace MyBetModel.Model
             UserLogin = userLogin;
             UserPass = userPass;
         }
+
+        public User(string surName, string name, string secondName, DateTime birthday, string userLogin, string userPass)
+        {
+            SurName = surName;
+            Name = name;
+            SecondName = secondName;
+            Birthday = birthday;
+            UserLogin = userLogin;
+            UserPass = userPass;
+        }
     }
 }

@@ -98,7 +98,6 @@ namespace MyBetView.Ui
                                     txtSumWinBet.Text = result.ToString(nfi);
                                         
                                 }
-                                
                             }
                             
                         }
@@ -154,11 +153,13 @@ namespace MyBetView.Ui
                         }
                         else
                         {
-                            MessageBox.Show("Недостаточно средств на балансе!");
+                            MessageBox.Show("Недостаточно средств на балансе! Пополните баланс");
                         }
                     }
                 }
+                MessageBox.Show("Введите сумму ставки. Минимальная ставка 100");
             }
+            
             return 2;
         }
 
