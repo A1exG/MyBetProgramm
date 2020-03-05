@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MyBetService
 {
-    public class GetDataService : IService
+    public class GetDataService : IGetDataService
     {
         public IList<EventBet> GetEvent()
         {

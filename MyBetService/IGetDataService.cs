@@ -9,7 +9,7 @@ using System.Text;
 namespace MyBetService
 {
     [ServiceContract]
-    public interface IService
+    public interface IGetDataService
     {
         [OperationContract]
         IList<EventBet> GetEvent();

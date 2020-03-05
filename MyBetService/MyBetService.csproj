@@ -145,7 +145,7 @@
     <Compile Include="BetService.cs" />
     <Compile Include="IBetService.cs" />
     <Compile Include="IPayService.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="IGetDataService.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="PayService.cs" />
