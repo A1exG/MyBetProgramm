@@ -95,12 +95,11 @@ namespace MyBetView.Ui
                                 {
                                     var summ = resultSum;
                                     var result = (coeff * summ);
-                                    txtSumWinBet.Text = result.ToString(nfi);
-                                        
+                                    txtSumWinBet.Text = result.ToString(nfi);  
                                 }
                             }
-                            
                         }
+                        else {MessageBox.Show("Недостаточно средств");}
                     }  
                 }
             }
@@ -151,15 +150,11 @@ namespace MyBetView.Ui
                             txtSumBet.Text = result.ToString((nfi));
                             return 1;
                         }
-                        else
-                        {
-                            MessageBox.Show("Недостаточно средств на балансе! Пополните баланс");
-                        }
+                        else {MessageBox.Show("Недостаточно средств на балансе! Пополните баланс");}
                     }
                 }
                 MessageBox.Show("Введите сумму ставки. Минимальная ставка 100");
             }
-            
             return 2;
         }
 
@@ -176,7 +171,15 @@ namespace MyBetView.Ui
                 , Convert.ToInt32(txtEventId.Text)
                 , txtTeam.Text);
 
-            betService.ConfirmBet(bet);
+            var conBet = betService.ConfirmBet(bet);
+            if(conBet ==1)
+            {
+                PayService payService = kernel.Get<PayService>();
+                var pay = payService.ChangeBalance(check[0], txtSumBet.Text);
+                if (pay == 1){MessageBox.Show($"Ваша ставка на сумму {txtSumBet.Text} принята.");}
+                else {MessageBox.Show("Ставка не принята");}
+            }
+            else {MessageBox.Show("Ставка не принята");}
         }
 
         private decimal ParceDecimal(string str)

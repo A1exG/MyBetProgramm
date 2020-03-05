@@ -12,6 +12,6 @@ namespace MyBetService
     public interface IBetService
     {
         [OperationContract]
-        void ConfirmBet(Bet bet);
+        int ConfirmBet(Bet bet);
     }
 }

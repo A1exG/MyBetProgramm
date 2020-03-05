@@ -1,0 +1,29 @@
+﻿<Window x:Class="MyBetView.Ui.UserAccountUi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyBetView.Ui"
+        mc:Ignorable="d"
+        Title="Личный кабинет" Height="236.705" Width="573.699">
+    <Grid>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Отчество" HorizontalAlignment="Left" Margin="9,62,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="9,88,0,0" VerticalAlignment="Top"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="255,36,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSurName" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtName" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtSecondName" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtBirthday" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtLogin" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="329,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnBalance"  Content="Баланс" HorizontalAlignment="Left" Margin="297,97,0,0" VerticalAlignment="Top" Width="152" Click="btnBalance_Click"/>
+        <Button x:Name="btnChange" Content="Изменить свои данные" HorizontalAlignment="Left" Margin="297,71,0,0" VerticalAlignment="Top" Width="152" Click="btnChange_Click"/>
+        <TextBox x:Name="txtUserIdAccount" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Ваш ID" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="297,122,0,0" VerticalAlignment="Top" Width="152" Click="btnExit_Click"/>
+        <PasswordBox x:Name="pswdUser" HorizontalAlignment="Left" Margin="329,41,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+
+    </Grid>
+</Window>

@@ -35,6 +35,9 @@ namespace MyBetView.Ui
 
         private void btnAccount_Click(object sender, RoutedEventArgs e)
         {
+            var userAccount = new UserAccountUi(check);
+            userAccount.Owner = this;
+            userAccount.ShowDialog();
 
         }
     }

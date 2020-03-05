@@ -9,15 +9,14 @@ using System.Text;
 namespace MyBetService
 {
     [ServiceContract]
-    public interface IUserValidator
+    public interface IPayService
     {
         [OperationContract]
-        IList<User> CheckRegUser(User u);
-
+        int ChangeBalance(User check, string sumBet);
         [OperationContract]
-        int RegistrationNewUser(User user);
-
+        int DepositBalance(int userId, decimal newBalance);
         [OperationContract]
-        void UpdateUser(User u);
+        int WithdrawBalance(int userId, decimal newBalance);
+
     }
 }

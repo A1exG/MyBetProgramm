@@ -17,12 +17,13 @@ namespace MyBetService
                 return userL;
             }
         }
-        public void RegistrationNewUser(User user)
+        public int RegistrationNewUser(User user)
         {
             using (var context = new MyDbContext())
             {
                 context.Users.Add(user);
                 context.SaveChanges();
+                return 1;
             }
         }
 

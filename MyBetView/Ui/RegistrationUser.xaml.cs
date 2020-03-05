@@ -57,7 +57,16 @@ namespace MyBetView.Ui
                     {
                         MessageBox.Show("Пользователь с таким логином и паролем уже существует");
                     }
-                    validator.RegistrationNewUser(user);
+                    var userOk = validator.RegistrationNewUser(user);
+                    if(userOk == 1)
+                    {
+                        MessageBox.Show("Вы зарегистрированны!");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Что то пошло не так");
+                    } 
                 }
                 else
                 {
