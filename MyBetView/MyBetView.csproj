@@ -172,6 +172,9 @@
     <Compile Include="Ui\EventsUi.xaml.cs">
       <DependentUpon>EventsUi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\HistoryBetsUi.xaml.cs">
+      <DependentUpon>HistoryBetsUi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ui\EventsUi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\HistoryBetsUi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

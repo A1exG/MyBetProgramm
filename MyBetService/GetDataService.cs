@@ -15,5 +15,29 @@ namespace MyBetService
                 return eventBetL;
             }
         }
+
+        public IList<Bet> GetBets(User user)
+        {
+            using (var db = new MyDbContext())
+            {
+                List<Bet> betL =
+                    db.Bets
+                    .Where(b => b.UserId == user.UserId )
+                    .ToList();
+                return betL;
+            }
+        }
+
+        public IList<Bet> GetBetId(int betId)
+        {
+            using (var db = new MyDbContext())
+            {
+                List<Bet> betL = 
+                    db.Bets
+                    .Where(b => b.BetId == betId)
+                    .ToList();
+                return betL;
+            }
+        }
     }
 }

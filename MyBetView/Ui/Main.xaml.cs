@@ -40,5 +40,12 @@ namespace MyBetView.Ui
             userAccount.ShowDialog();
 
         }
+
+        private void btnHistoryBets_Click(object sender, RoutedEventArgs e)
+        {
+            var historyBets = new HistoryBetsUi(check);
+            historyBets.Owner = this;
+            historyBets.ShowDialog();
+        }
     }
 }
