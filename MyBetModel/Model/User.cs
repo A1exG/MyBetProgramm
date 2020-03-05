@@ -18,7 +18,7 @@ namespace MyBetModel.Model
         [DataMember]
         public DateTime Birthday { get; set; }
         [DataMember]
-        public decimal Balance { get; set; }
+        public decimal Balance { get; set; } 
         [DataMember]
         public string UserLogin { get; set; }
         [DataMember]

@@ -18,6 +18,6 @@ namespace MyBetService
         int RegistrationNewUser(User user);
 
         [OperationContract]
-        void UpdateUser(User u);
+        void UpdateUser(User user);
     }
 }

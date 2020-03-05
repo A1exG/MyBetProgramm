@@ -35,10 +35,9 @@ namespace MyBetView.Ui
 
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            //var chengeAccount = new ChangeAccount(userIdAccount);
-            //chengeAccount.Owner = this;
-            //chengeAccount.ShowDialog();
-            //this.UpdateLayout();
+            var chengeAccount = new ChangeAccount(check);
+            chengeAccount.Owner = this;
+            chengeAccount.ShowDialog();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

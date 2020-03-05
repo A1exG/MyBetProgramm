@@ -27,11 +27,20 @@ namespace MyBetService
             }
         }
 
-        public void UpdateUser(User u)
+        public void UpdateUser(User user)
         {
             using (var context = new MyDbContext())
             {
-                context.Users.Update(u);
+                var us = context.Users.FirstOrDefault(c => c.UserId == user.UserId);
+
+                us.Name = user.Name;
+                us.SecondName = user.SecondName;
+                us.SurName = user.SurName;
+                us.UserLogin = us.UserLogin;
+                us.UserPass = user.UserPass;
+                us.Birthday = user.Birthday;
+
+                context.Users.Update(us);
                 context.SaveChanges();
             }
         }
