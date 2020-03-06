@@ -47,14 +47,27 @@ namespace MyBetView.Ui
         {
             if(txtIdBets.Text != null)
             {
-                var betId = Convert.ToInt32(txtIdBets.Text); //Если ввести другой ID?!
-
-                IKernel kernel = new StandardKernel();
-                GetDataService getDataService = kernel.Get<GetDataService>();
-                var itemSource = getDataService.GetBetId(betId);
-                grvBet.ItemsSource = itemSource;
+                var betId = Int32.TryParse(txtIdBets.Text, out int result);
+                if(betId == true)
+                {
+                    IKernel kernel = new StandardKernel();
+                    GetDataService getDataService = kernel.Get<GetDataService>();
+                    var itemSource = getDataService.GetBetId(result);
+                    grvBet.ItemsSource = itemSource;
+                    HeadTable();
+                }
             }
-            
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            IKernel kernel = new StandardKernel();
+            GetDataService getDataService = kernel.Get<GetDataService>();
+
+            var itemsSource = getDataService.GetBets(check[0]);
+            grvBet.ItemsSource = itemsSource;
+            txtIdBets.Clear();
+            HeadTable();
         }
     }
 }

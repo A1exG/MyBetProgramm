@@ -5,7 +5,7 @@ using Ninject;
 using System.Windows;
 
 
-namespace MyBetView
+namespace MyBetView.Ui
 {
     public partial class MainWindow : Window
     {

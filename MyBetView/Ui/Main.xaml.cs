@@ -1,18 +1,7 @@
 ﻿using MyBetModel.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MyBetView.Ui
 {
@@ -24,6 +13,13 @@ namespace MyBetView.Ui
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.check = check;
+
+            lblHellow.Content = string.Format("Добро пожаловать, {0} {1}!", check[0].SurName, check[0].Name);
+
+            if (check[0].UserLogin == "admin")
+            {
+                btnAddResult.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnEvent_Click(object sender, RoutedEventArgs e)
