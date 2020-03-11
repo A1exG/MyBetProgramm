@@ -10,8 +10,8 @@
         <Button x:Name="btnAccount" Content="Ваш аккаунт" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="10,42,0,0" Height="49"/>
         <Button x:Name="btnEvent" Content="События" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="10,96,0,0" Height="49"/>
         <Button x:Name="btnHistoryBets" Content="История ставок" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="10,150,0,0" Height="49"/>
-        <Button x:Name="btnAddResult" Content="Ввести результат" Visibility="Hidden"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="195,42,0,0" Height="49"/>
+        <Button x:Name="btnAddResult" Content="Ввести результат" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="195,42,0,0" Height="49"/>
         <Label x:Name="lblHellow" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,10,0,0" Width="553"/>
-
+        <Button x:Name="btnAddEvent" Content="Добавить событие" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="195,96,0,0" Height="49"/>
     </Grid>
 </Window>

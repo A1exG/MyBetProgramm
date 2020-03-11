@@ -50,5 +50,15 @@ namespace MyBetService
                 return true;
             }
         }
+
+        public bool AddNewEvent(EventBet eventBet)
+        {
+            using (var context = new MyDbContext())
+            {
+                context.EventBets.Add(eventBet);
+                context.SaveChanges();
+                return true;
+            }
+        }
     }
 }

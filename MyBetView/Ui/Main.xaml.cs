@@ -12,7 +12,6 @@ namespace MyBetView.Ui
         private IList<User> check;
         public Main(IList<User> check)
         {
-
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
@@ -27,7 +26,7 @@ namespace MyBetView.Ui
             this.check = check;
             lblHellow.Content = string.Format("Добро пожаловать, {0} {1}!", check[0].SurName, check[0].Name);
 
-            if (check[0].UserLogin == "admin"){btnAddResult.Visibility = Visibility.Visible;}
+            if (check[0].UserLogin == "admin"){btnAddResult.Visibility = Visibility.Visible; btnAddEvent.Visibility = Visibility.Visible; }
 
             btnEvent.Click += (s, e) => 
             {
@@ -53,6 +52,13 @@ namespace MyBetView.Ui
                 var addResult = new AddResultUi();
                 addResult.Owner = this;
                 addResult.ShowDialog();
+            };
+
+            btnAddEvent.Click += (s, e) =>
+            {
+                var addNewEvent = new AddNewEventUi();
+                addNewEvent.Owner = this;
+                addNewEvent.ShowDialog();
             };
         }
     }

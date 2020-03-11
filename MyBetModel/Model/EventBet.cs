@@ -29,5 +29,18 @@ namespace MyBetModel.Model
 
         [DataMember]
         internal virtual ICollection<Result> Results { get; set; }
+
+        public EventBet(DateTime dateEvent, string team1, decimal team1Coef, string team2, decimal team2Coef)
+        {
+            DateEvent = dateEvent;
+            Team1 = team1;
+            Team1Coef = team1Coef;
+            Team2 = team2;
+            Team2Coef = team2Coef;
+        }
+        public EventBet()
+        {
+
+        }
     }
 }

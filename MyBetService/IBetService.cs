@@ -17,6 +17,8 @@ namespace MyBetService
 
         [OperationContract]
         bool DeleteEvent(EventBet eventBet);
+
+        bool AddNewEvent(EventBet eventBet);
     }
 
 
