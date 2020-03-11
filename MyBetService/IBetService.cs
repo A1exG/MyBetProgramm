@@ -1,10 +1,5 @@
 ﻿using MyBetModel.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
 namespace MyBetService
 {
@@ -13,5 +8,16 @@ namespace MyBetService
     {
         [OperationContract]
         int ConfirmBet(Bet bet);
+
+        [OperationContract]
+        bool AddEventInHistory(EventBet eventBet, string winner);
+
+        [OperationContract]
+        bool AddResultEvent(EventBet eventBet, string winner);
+
+        [OperationContract]
+        bool DeleteEvent(EventBet eventBet);
     }
+
+
 }

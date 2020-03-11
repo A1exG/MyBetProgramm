@@ -28,5 +28,17 @@ namespace MyBetModel.Model
 
         [DataMember]
         public string EventEnd { get; set; }
+
+        public History(int eventId, DateTime dateEvent, string team1, decimal team1Coef, string team2, decimal team2Coef, string winner, string eventEnd)
+        {
+            EventId = eventId;
+            DateEvent = dateEvent;
+            Team1 = team1;
+            Team1Coef = team1Coef;
+            Team2 = team2;
+            Team2Coef = team2Coef;
+            Winner = winner;
+            EventEnd = eventEnd;
+        }
     }
 }

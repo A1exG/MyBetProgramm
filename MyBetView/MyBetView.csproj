@@ -166,6 +166,9 @@
     <Compile Include="Ui\AccountBalanceUi.xaml.cs">
       <DependentUpon>AccountBalanceUi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\AddResultUi.xaml.cs">
+      <DependentUpon>AddResultUi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\ChangeAccount.xaml.cs">
       <DependentUpon>ChangeAccount.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
     <Compile Include="Ui\UserAccountUi.xaml.cs">
       <DependentUpon>UserAccountUi.xaml</DependentUpon>
     </Compile>
+    <Page Include="Ui\AddResultUi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ui\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -13,6 +13,10 @@ namespace MyBetService
     {
         [OperationContract]
         IList<EventBet> GetEvent();
+        
+        [OperationContract]
+        IList<EventBet> GetEventData(int Id);
+        
         [OperationContract]
         IList<Bet> GetBets(User user);
 

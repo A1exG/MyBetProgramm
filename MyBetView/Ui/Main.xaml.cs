@@ -47,6 +47,13 @@ namespace MyBetView.Ui
                 historyBets.Owner = this;
                 historyBets.ShowDialog();
             };
+
+            btnAddResult.Click += (s, e) =>
+            {
+                var addResult = new AddResultUi();
+                addResult.Owner = this;
+                addResult.ShowDialog();
+            };
         }
     }
 }
