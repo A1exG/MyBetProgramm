@@ -1,6 +1,5 @@
 ﻿using MyBetModel.Model;
 using MyBetService;
-using MyBetView.Ui;
 using Ninject;
 using System.Windows;
 
@@ -13,35 +12,32 @@ namespace MyBetView.Ui
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var userLogin = txtLogin.Text.ToString();
-            var userPass = txtPass.Text.ToString();
-            User u = new User(userLogin, userPass);
 
             IKernel kernel = new StandardKernel();
             MyUserValidator validator = kernel.Get<MyUserValidator>();
 
-            var check = validator.CheckRegUser(u);
-            if(check.Count > 0)
+            btnOk.Click += (s, e) =>
             {
-                var main = new Main(check);
-                main.Show();
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("Что то пошло не так");
-            } 
-        }
+                var userLogin = txtLogin.Text.ToString();
+                var userPass = txtPass.Text.ToString();
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            RegistrationUser regUser = new RegistrationUser();
-            regUser.Owner = this;
-            regUser.ShowDialog();
+                User u = new User(userLogin, userPass);
+                var check = validator.CheckRegUser(u);
+
+                if (check.Count > 0)
+                {
+                    var main = new Main(check);
+                    main.Show();
+                    Close();
+                }
+            };
+
+            btnRegistration.Click += (s, e) =>
+            {
+                RegistrationUser regUser = new RegistrationUser();
+                regUser.Owner = this;
+                regUser.ShowDialog();
+            };
         }
     }
 }

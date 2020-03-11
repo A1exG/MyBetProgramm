@@ -24,10 +24,10 @@
         <Label Content="Пароль" HorizontalAlignment="Left" Margin="255,36,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
         <TextBox x:Name="txtLogin"  HorizontalAlignment="Left" Height="23" Margin="329,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtUserPass"  HorizontalAlignment="Left" Height="23" Margin="329,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnSeve" Content="Сохранить изменения" HorizontalAlignment="Left" Margin="329,73,0,0" VerticalAlignment="Top" Width="120" Click="btnSeve_Click"/>
+        <Button x:Name="btnSeve" Content="Сохранить изменения" HorizontalAlignment="Left" Margin="329,73,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Ваш ID" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtUserId" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="329,98,0,0" VerticalAlignment="Top" Width="120" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="329,98,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

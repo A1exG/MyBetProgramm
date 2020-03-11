@@ -16,7 +16,32 @@ namespace MyBetView.Ui
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.check = check;
-            LoadData(check[0]); 
+            LoadData(check[0]);
+
+            IKernel kernel = new StandardKernel();
+            MyUserValidator validator = kernel.Get<MyUserValidator>();
+
+            this.Activated += (s, e) =>
+            {
+                var data = validator.GetUserData(check[0]);
+                check = data;
+                LoadData(check[0]);
+            };
+
+            btnSeve.Click += (s, e) =>
+            {
+                check[0].UserLogin = txtLogin.Text;
+                check[0].UserPass = txtUserPass.Text;
+                check[0].SurName = txtSurName.Text;
+                check[0].SecondName = txtSecondName.Text;
+                check[0].Name = txtName.Text;
+                check[0].Birthday = Convert.ToDateTime(txtBirthday.Text);
+
+                validator.UpdateUser(check[0]);
+                MessageBox.Show("Данные сохранены");
+                Close();
+            };
+            btnExit.Click += (s, e) => {Close();};
         }
         void LoadData(User check)
         {
@@ -27,28 +52,6 @@ namespace MyBetView.Ui
             txtLogin.Text = check.UserLogin;
             txtUserPass.Text = check.UserPass;
             txtUserId.Text = check.UserId.ToString();
-        }
-
-        private void btnSeve_Click(object sender, RoutedEventArgs e)
-        {
-            IKernel kernel = new StandardKernel();
-            MyUserValidator validator = kernel.Get<MyUserValidator>();
-
-            check[0].UserLogin = txtLogin.Text;
-            check[0].UserPass = txtUserPass.Text;
-            check[0].SurName = txtSurName.Text;
-            check[0].SecondName = txtSecondName.Text;
-            check[0].Name = txtName.Text;
-            check[0].Birthday = Convert.ToDateTime(txtBirthday.Text);
-
-            validator.UpdateUser(check[0]);
-            MessageBox.Show("Данные сохранены");
-            Close();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

@@ -19,18 +19,44 @@ namespace MyBetView.Ui
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.check = check;
-        }
 
-        private void dgvEvents_Loaded(object sender, RoutedEventArgs e)
-        {
             IKernel kernel = new StandardKernel();
             GetDataService getDataService = kernel.Get<GetDataService>();
+            BetService betService = kernel.Get<BetService>();
+            PayService payService = kernel.Get<PayService>();
 
-            var ItemsSource = getDataService.GetEvent();
-            dgvEvents.ItemsSource = ItemsSource;
-            HeadTable();
-            LoadUserData();
+            btnExit.Click += (s, e) => { Close();};
+
+            dgvEvents.Loaded += (s, e) =>
+            {
+                var ItemsSource = getDataService.GetEvent();
+                dgvEvents.ItemsSource = ItemsSource;
+                HeadTable();
+                LoadUserData();
+            };
+
+            btnBet.Click += (s, e) =>
+            {
+                ParceDecimal(txtSumBet.Text);
+                Bet bet = new Bet(DateTime.Now
+                    , ParceDecimal(txtSumBet.Text)
+                    , ParceDecimal(txtelement.Text)
+                    , ParceDecimal(txtSumWinBet.Text)
+                    , check[0].UserId
+                    , Convert.ToInt32(txtEventId.Text)
+                    , txtTeam.Text);
+
+                var conBet = betService.ConfirmBet(bet);
+                if (conBet == 1)
+                {
+                    var pay = payService.ChangeBalance(check[0], txtSumBet.Text);
+                    if (pay == 1) { MessageBox.Show($"Ваша ставка на сумму {txtSumBet.Text} принята."); }
+                    else { MessageBox.Show("Ставка не принята"); }
+                }
+                else { MessageBox.Show("Ставка не принята"); }
+            };
         }
+
         public void HeadTable()
         {
             dgvEvents.Columns[0].Header = "Id События";
@@ -105,11 +131,6 @@ namespace MyBetView.Ui
             }
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void txtSumBet_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             string inputSymbol = e.Text.ToString();
@@ -127,8 +148,7 @@ namespace MyBetView.Ui
             {
                 if (decimal.TryParse(txtselect.Text, NumberStyles.Number, nfi, out decimal result))
                 {
-                    if (result != FocusEventId)
-                        txtelement.Text = result.ToString();
+                    if (result != FocusEventId) txtelement.Text = result.ToString();
                 }
             }
         }
@@ -157,31 +177,6 @@ namespace MyBetView.Ui
             }
             return 2;
         }
-
-        private void btnBet_Click(object sender, RoutedEventArgs e)
-        {
-            IKernel kernel = new StandardKernel();
-            BetService betService = kernel.Get<BetService>();
-            ParceDecimal(txtSumBet.Text);
-            Bet bet = new Bet(DateTime.Now
-                , ParceDecimal(txtSumBet.Text)
-                , ParceDecimal(txtelement.Text)
-                , ParceDecimal(txtSumWinBet.Text)
-                , check[0].UserId
-                , Convert.ToInt32(txtEventId.Text)
-                , txtTeam.Text);
-
-            var conBet = betService.ConfirmBet(bet);
-            if(conBet ==1)
-            {
-                PayService payService = kernel.Get<PayService>();
-                var pay = payService.ChangeBalance(check[0], txtSumBet.Text);
-                if (pay == 1){MessageBox.Show($"Ваша ставка на сумму {txtSumBet.Text} принята.");}
-                else {MessageBox.Show("Ставка не принята");}
-            }
-            else {MessageBox.Show("Ставка не принята");}
-        }
-
         private decimal ParceDecimal(string str)
         {
             NumberFormatInfo nfi = new NumberFormatInfo() { NumberDecimalSeparator = "." };

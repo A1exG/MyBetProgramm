@@ -17,17 +17,41 @@ namespace MyBetView.Ui
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.check = check;
-        }
 
-        private void grvBet_Loaded(object sender, RoutedEventArgs e)
-        {
             IKernel kernel = new StandardKernel();
             GetDataService getDataService = kernel.Get<GetDataService>();
 
-            var itemsSource = getDataService.GetBets(check[0]);
-            grvBet.ItemsSource = itemsSource;
-            grvBet.ColumnWidth = DataGridLength.Auto;
-            HeadTable();
+
+            grvBet.Loaded += (s, e) =>
+            {
+                var itemsSource = getDataService.GetBets(check[0]);
+                grvBet.ItemsSource = itemsSource;
+                grvBet.ColumnWidth = DataGridLength.Auto;
+                HeadTable();
+            };
+
+            txtIdBets.TextChanged += (s, e) =>
+            {
+                if (txtIdBets.Text != null)
+                {
+                    var betId = Int32.TryParse(txtIdBets.Text, out int result);
+                    if (betId == true)
+                    {
+                        var itemSource = getDataService.GetBetId(result);
+                        grvBet.ItemsSource = itemSource;
+                        HeadTable();
+                    }
+                }else { MessageBox.Show("Введите ID"); }
+            };
+
+            btnRefresh.Click += (s, e) =>
+            {
+                var itemsSource = getDataService.GetBets(check[0]);
+                grvBet.ItemsSource = itemsSource;
+                txtIdBets.Clear();
+                HeadTable();
+            };
+            btnExit.Click += (s, e) => {Close();};
         }
 
         public void HeadTable()
@@ -41,33 +65,6 @@ namespace MyBetView.Ui
             grvBet.Columns[5].Visibility = Visibility.Hidden;
             grvBet.Columns[6].Header = "ID события";
             grvBet.Columns[7].Header = "Команда";
-        }
-
-        private void txtIdBets_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(txtIdBets.Text != null)
-            {
-                var betId = Int32.TryParse(txtIdBets.Text, out int result);
-                if(betId == true)
-                {
-                    IKernel kernel = new StandardKernel();
-                    GetDataService getDataService = kernel.Get<GetDataService>();
-                    var itemSource = getDataService.GetBetId(result);
-                    grvBet.ItemsSource = itemSource;
-                    HeadTable();
-                }
-            }
-        }
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            IKernel kernel = new StandardKernel();
-            GetDataService getDataService = kernel.Get<GetDataService>();
-
-            var itemsSource = getDataService.GetBets(check[0]);
-            grvBet.ItemsSource = itemsSource;
-            txtIdBets.Clear();
-            HeadTable();
         }
     }
 }

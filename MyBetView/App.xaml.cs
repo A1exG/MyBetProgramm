@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MyBetService;
+using Ninject;
 using System.Windows;
 
 namespace MyBetView
 {
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        private void App_Startup(object sender, StartupEventArgs e)
+        {
+            IKernel kernel = new StandardKernel();
+            kernel.Bind<IBetService>().To<BetService>();
+            kernel.Bind<IGetDataService>().To<GetDataService>();
+            kernel.Bind<IPayService>().To<PayService>();
+            kernel.Bind<IUserValidator>().To<MyUserValidator>();
+        } 
     }
 }

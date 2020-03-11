@@ -14,8 +14,39 @@ namespace MyBetView.Ui
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-        }
+            CheckTextInput();
 
+            IKernel kernel = new StandardKernel();
+            MyUserValidator validator = kernel.Get<MyUserValidator>();
+
+            btnReg.Click += (s, e) =>
+            {
+                var check = CheckEmpty();
+                if (check == 1 || txtUserPass.Text.Length > 5)
+                {
+                    User user = new User(txtSurName.Text, txtName.Text
+                  , txtSecondName.Text, Convert.ToDateTime(Dp.SelectedDate)
+                  , txtUserLogin.Text, txtUserPass.Text);
+
+                    var checkUser = validator.CheckRegUser(user);
+                    if (checkUser.Count > 0)
+                    {
+                        MessageBox.Show("Пользователь с таким логином и паролем уже существует");
+                    }
+
+                    var userOk = validator.RegistrationNewUser(user);
+                    if (userOk == 1)
+                    {
+                        MessageBox.Show("Вы зарегистрированны!");
+                        Close();
+                    }
+                    else { MessageBox.Show("Что то пошло не так"); }
+                }
+                else{MessageBox.Show("Поля не заполнены или короткий пароль");}
+            };
+
+            btnExit.Click += (s, e) => {Close();};
+        }
         private void Dp_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             var ageInYears = GetDifferenceInYears(Dp.SelectedDate.Value, DateTime.Today);
@@ -29,10 +60,10 @@ namespace MyBetView.Ui
         {
             return (endDate.Year - startDate.Year - 1) +
                 (((endDate.Month > startDate.Month) ||
-                ((endDate.Month == startDate.Month) && (endDate.Day >= startDate.Day))) ? 1 : 0);
+                ((endDate.Month == startDate.Month) && 
+                (endDate.Day >= startDate.Day))) ? 1 : 0);
         }
-
-        private void btnReg_Click(object sender, RoutedEventArgs e)
+        private int CheckEmpty()
         {
             if (txtSurName.Text == String.Empty
                 ^ txtName.Text == String.Empty
@@ -41,63 +72,52 @@ namespace MyBetView.Ui
                 ^ txtUserPass.Text == String.Empty)
             {
                 MessageBox.Show("Заполните все поля");
+                return 0;
             }
             else
             {
-                if(txtUserPass.Text.Length > 5)
-                {
-                    User user = new User(txtSurName.Text, txtName.Text
-                   , txtSecondName.Text, Convert.ToDateTime(Dp.SelectedDate)
-                   , txtUserLogin.Text, txtUserPass.Text);
+                return 1;
+            }
+        }
 
-                    IKernel kernel = new StandardKernel();
-                    MyUserValidator validator = kernel.Get<MyUserValidator>();
-                    var checkUser = validator.CheckRegUser(user);
-                    if(checkUser.Count > 0)
-                    {
-                        MessageBox.Show("Пользователь с таким логином и паролем уже существует");
-                    }
-                    var userOk = validator.RegistrationNewUser(user);
-                    if(userOk == 1)
-                    {
-                        MessageBox.Show("Вы зарегистрированны!");
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Что то пошло не так");
-                    } 
+        private void CheckTextInput()
+        {
+            txtUserLogin.PreviewTextInput += (s, e) =>
+            {
+                string inputSymbol = e.Text.ToString();
+
+                if (!Regex.Match(inputSymbol, @"[a-zA-Z]").Success)
+                {
+                    e.Handled = true;
                 }
-                else
+            };
+            txtSurName.PreviewTextInput += (s, e) =>
+            {
+                string inputSymbol = e.Text.ToString();
+
+                if (!Regex.Match(inputSymbol, @"[а-яА-Я]").Success)
                 {
-                    MessageBox.Show("Короткий пароль");
-                } 
-            }
-        }
-
-        private void txtUserLogin_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            string inputSymbol = e.Text.ToString();
-
-            if (!Regex.Match(inputSymbol, @"[a-zA-Z]").Success)
+                    e.Handled = true;
+                }
+            };
+            txtName.PreviewTextInput += (s, e) =>
             {
-                e.Handled = true;
-            }
-        }
+                string inputSymbol = e.Text.ToString();
 
-        private void txtSurName_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            string inputSymbol = e.Text.ToString();
-
-            if (!Regex.Match(inputSymbol, @"[а-яА-Я]").Success)
+                if (!Regex.Match(inputSymbol, @"[а-яА-Я]").Success)
+                {
+                    e.Handled = true;
+                }
+            };
+            txtSecondName.PreviewTextInput += (s, e) =>
             {
-                e.Handled = true;
-            }
-        }
+                string inputSymbol = e.Text.ToString();
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
+                if (!Regex.Match(inputSymbol, @"[а-яА-Я]").Success)
+                {
+                    e.Handled = true;
+                }
+            };
         }
     }
 }

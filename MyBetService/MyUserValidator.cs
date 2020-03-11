@@ -44,5 +44,17 @@ namespace MyBetService
                 context.SaveChanges();
             }
         }
+
+        public IList<User> GetUserData(User user)
+        {
+            using (var db = new MyDbContext())
+            {
+                List<User> userL =
+                    db.Users
+                    .Where(b => b.UserId == user.UserId)
+                    .ToList();
+                return userL;
+            }
+        }
     }
 }

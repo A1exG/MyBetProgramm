@@ -18,11 +18,11 @@
         <TextBox x:Name="txtSecondName" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtBirthday" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtLogin" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="329,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnBalance"  Content="Баланс" HorizontalAlignment="Left" Margin="297,97,0,0" VerticalAlignment="Top" Width="152" Click="btnBalance_Click"/>
-        <Button x:Name="btnChange" Content="Изменить свои данные" HorizontalAlignment="Left" Margin="297,71,0,0" VerticalAlignment="Top" Width="152" Click="btnChange_Click"/>
+        <Button x:Name="btnBalance"  Content="Баланс" HorizontalAlignment="Left" Margin="297,97,0,0" VerticalAlignment="Top" Width="152"/>
+        <Button x:Name="btnChange" Content="Изменить свои данные" HorizontalAlignment="Left" Margin="297,71,0,0" VerticalAlignment="Top" Width="152"/>
         <TextBox x:Name="txtUserIdAccount" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="122,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Ваш ID" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="297,122,0,0" VerticalAlignment="Top" Width="152" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="297,122,0,0" VerticalAlignment="Top" Width="152"/>
         <PasswordBox x:Name="pswdUser" HorizontalAlignment="Left" Margin="329,41,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
 
     </Grid>

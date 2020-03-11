@@ -14,15 +14,15 @@
         <Label Content="Введите Имя" HorizontalAlignment="Left" Margin="40,137,0,0" VerticalAlignment="Top"/>
         <Label Content="Введите Отчество" HorizontalAlignment="Left" Margin="40,166,0,0" VerticalAlignment="Top"/>
         <Label Content="Дату рождения " HorizontalAlignment="Left" Margin="39,192,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtSurName" ToolTip="Введите Вашу фамилию" PreviewTextInput="txtSurName_PreviewTextInput"  HorizontalAlignment="Left" Height="23" Margin="212,113,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtName" ToolTip="Введите Ваше имя" PreviewTextInput="txtSurName_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="212,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtSecondName" ToolTip="Введите Ваше отчество" PreviewTextInput="txtSurName_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="212,166,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtSurName" ToolTip="Введите Вашу фамилию" HorizontalAlignment="Left" Height="23" Margin="212,113,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtName" ToolTip="Введите Ваше имя" HorizontalAlignment="Left" Height="23" Margin="212,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtSecondName" ToolTip="Введите Ваше отчество"  HorizontalAlignment="Left" Height="23" Margin="212,166,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Придумайте логин" HorizontalAlignment="Left" Margin="40,54,0,0" VerticalAlignment="Top"/>
         <Label Content="Придумайте пароль" HorizontalAlignment="Left" Margin="39,80,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtUserLogin" ToolTip="Введите логин. Например 'Login'" PreviewTextInput="txtUserLogin_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="212,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtUserLogin" ToolTip="Введите логин. Например 'Login'"  HorizontalAlignment="Left" Height="23" Margin="212,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtUserPass" ToolTip="Придумайте пароль." HorizontalAlignment="Left" Height="23" Margin="212,85,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnReg" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="39,233,0,0" VerticalAlignment="Top" Width="122" Click="btnReg_Click"/>
+        <Button x:Name="btnReg" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="39,233,0,0" VerticalAlignment="Top" Width="122"/>
         <DatePicker Name="Dp" SelectedDateFormat="Short" SelectedDateChanged="Dp_SelectedDateChanged" Margin="212,0,119,54" Height="24" VerticalAlignment="Bottom" />
-        <Button Content="Выйти" HorizontalAlignment="Left" Margin="188,233,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="btnExit" Content="Выйти" HorizontalAlignment="Left" Margin="188,233,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

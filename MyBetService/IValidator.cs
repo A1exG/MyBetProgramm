@@ -1,10 +1,6 @@
 ﻿using MyBetModel.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
 namespace MyBetService
 {
@@ -19,5 +15,7 @@ namespace MyBetService
 
         [OperationContract]
         void UpdateUser(User user);
+        [OperationContract]
+        IList<User> GetUserData(User user);
     }
 }

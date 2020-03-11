@@ -1,4 +1,6 @@
 ﻿using MyBetModel.Model;
+using MyBetService;
+using Ninject;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -13,7 +15,31 @@ namespace MyBetView.Ui
             InitializeComponent();
             this.check = check;
             LoadData(check[0]);
+
+            this.Activated += (s, e) =>
+            {
+                IKernel kernel = new StandardKernel();
+                MyUserValidator validator = kernel.Get<MyUserValidator>();
+                var data = validator.GetUserData(check[0]);
+                check = data;
+                LoadData(check[0]);
+            };
+
+            btnBalance.Click += (s, e) =>
+            {
+                var balance = new AccountBalanceUi(check);
+                balance.Owner = this;
+                balance.ShowDialog();
+            };
+            btnChange.Click += (s, e) =>
+            {
+                var chengeAccount = new ChangeAccount(check);
+                chengeAccount.Owner = this;
+                chengeAccount.ShowDialog();
+            };
+            btnExit.Click += (s, e) => {Close();};
         }
+
 
         void LoadData(User check)
         {
@@ -24,25 +50,6 @@ namespace MyBetView.Ui
             txtLogin.Text = check.UserLogin;
             pswdUser.Password = check.UserPass;
             txtUserIdAccount.Text = check.UserId.ToString();
-        }
-
-        private void btnBalance_Click(object sender, RoutedEventArgs e)
-        {
-            var balance = new AccountBalanceUi(check[0].UserId, check[0].Balance);
-            balance.Owner = this;
-            balance.ShowDialog();
-        }
-
-        private void btnChange_Click(object sender, RoutedEventArgs e)
-        {
-            var chengeAccount = new ChangeAccount(check);
-            chengeAccount.Owner = this;
-            chengeAccount.ShowDialog();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

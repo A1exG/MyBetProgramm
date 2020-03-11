@@ -9,13 +9,13 @@
     <Grid>
         <Label Content="Ваш баланс" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="78"/>
         <TextBox x:Name="txtBalance" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="93,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnDeposit" Content="Пополнить" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Width="93" Click="btnDeposit_Click"/>
-        <Button x:Name="btnWithdraw" Content="Снять с баланса" HorizontalAlignment="Left" Margin="108,59,0,0" VerticalAlignment="Top" Width="93" Click="btnWithdraw_Click"/>
+        <Button x:Name="btnDeposit" Content="Пополнить" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Width="93"/>
+        <Button x:Name="btnWithdraw" Content="Снять с баланса" HorizontalAlignment="Left" Margin="108,59,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Name="lbl" Visibility="Hidden" Content="Введите сумму"  HorizontalAlignment="Left" Margin="11,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.051"/>
         <TextBox x:Name="txtSum" Visibility="Hidden" HorizontalAlignment="Left"  Height="23" Margin="108,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.13,0.565"/>
-        <Button x:Name="btnOkDeposit" Visibility="Hidden"  Content="Пополнить" HorizontalAlignment="Left" Margin="186,86,0,0" VerticalAlignment="Top" Width="79" Height="23" Click="btnOkDeposit_Click"/>
-        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="86,114,0,0" VerticalAlignment="Top" Width="75" Click="btnExit_Click"/>
-        <Button x:Name="btnOkWithdraw" Visibility="Hidden" Content="Подтвердить" HorizontalAlignment="Left" Margin="186,86,0,0" VerticalAlignment="Top" Width="79" Click="btnOkWithdraw_Click" Height="23"/>
+        <Button x:Name="btnOkDeposit" Visibility="Hidden"  Content="Пополнить" HorizontalAlignment="Left" Margin="186,86,0,0" VerticalAlignment="Top" Width="79" Height="23"/>
+        <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="86,114,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnOkWithdraw" Visibility="Hidden" Content="Подтвердить" HorizontalAlignment="Left" Margin="186,86,0,0" VerticalAlignment="Top" Width="79" Height="23"/>
 
     </Grid>
 </Window>

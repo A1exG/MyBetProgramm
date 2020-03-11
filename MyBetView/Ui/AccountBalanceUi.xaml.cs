@@ -1,5 +1,7 @@
-﻿using MyBetService;
+﻿using MyBetModel.Model;
+using MyBetService;
 using Ninject;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 
@@ -8,85 +10,92 @@ namespace MyBetView.Ui
 {
     public partial class AccountBalanceUi : Window
     {
-        private readonly int userId;
-        private readonly decimal balance;
-
-        public AccountBalanceUi(int UserId, decimal Balance)
+        private readonly IList<User> check;
+        public AccountBalanceUi(IList<User> check)
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            txtBalance.Text = Balance.ToString();
-            userId = UserId;
-            balance = Balance;
+
+            this.check = check;
+
+            IKernel kernel = new StandardKernel();
+            PayService payServece = kernel.Get<PayService>();
+            MyUserValidator validator = kernel.Get<MyUserValidator>();
+
+            txtBalance.Text = check[0].Balance.ToString();
+            var userId = check[0].UserId;
+            var balance = check[0].Balance;
+
+            btnExit.Click += (s, e) => {Close();};
+
+            this.Activated += (s, e) =>
+            {
+                var data = validator.GetUserData(check[0]);
+                check = data;
+                txtBalance.Text = check[0].Balance.ToString();
+                txtSum.Text = "";
+                balance = check[0].Balance;
+                ReloadVisibleItem();
+            };
+
+            btnDeposit.Click += (s, e) =>
+            {
+                VisibleItem();
+                btnOkDeposit.Visibility = Visibility.Visible;
+                btnWithdraw.Visibility = Visibility.Hidden;
+            };
+            btnWithdraw.Click += (s, e) =>
+            {
+                VisibleItem();
+                btnOkWithdraw.Visibility = Visibility.Visible;
+                btnDeposit.Visibility = Visibility.Hidden;
+            };
+
+            btnOkDeposit.Click += (s, e) =>
+            {
+                var sum = ParceDecimal(txtSum.Text);
+                decimal newBalance = (balance + sum);
+                var depo = payServece.DepositBalance(userId, newBalance);
+                if (depo == 1)
+                {
+                    MessageBox.Show($"Ваш баланс пополнен на сумму {txtSum.Text}. Баланс = {newBalance}");
+                }
+            };
+
+            btnOkWithdraw.Click += (s, e) =>
+            {
+                var sum = ParceDecimal(txtSum.Text);
+                if (balance > sum)
+                {
+                    decimal newBalance = (balance - sum);
+                    var with = payServece.WithdrawBalance(userId, newBalance);
+                    if (with == 1)
+                    {
+                        MessageBox.Show($"С вашего баланса снято - {txtSum.Text}. Баланс = {newBalance}");
+                    }
+                }
+                else { MessageBox.Show("Недостаточно средств"); }
+            };
         }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void btnDeposit_Click(object sender, RoutedEventArgs e)
-        {
-            VisibleItem();
-            btnOkDeposit.Visibility = Visibility.Visible;
-            btnWithdraw.Visibility = Visibility.Hidden;
-
-
-        }
-
         public void VisibleItem()
         {
             lbl.Visibility = Visibility.Visible;
             txtSum.Visibility = Visibility.Visible;
         }
-        private void btnWithdraw_Click(object sender, RoutedEventArgs e)
+        public void ReloadVisibleItem()
         {
-            VisibleItem();
-            btnOkWithdraw.Visibility = Visibility.Visible;
-            btnDeposit.Visibility = Visibility.Hidden;
+            btnWithdraw.Visibility = Visibility.Visible;
+            btnDeposit.Visibility = Visibility.Visible;
+            btnOkDeposit.Visibility = Visibility.Hidden;
+            btnOkWithdraw.Visibility = Visibility.Hidden;
+            lbl.Visibility = Visibility.Hidden;
+            txtSum.Visibility = Visibility.Hidden;
         }
-
-        private void btnOkDeposit_Click(object sender, RoutedEventArgs e)
-        {
-            IKernel kernel = new StandardKernel();
-            PayService payServece = kernel.Get<PayService>();
-
-            var sum = ParceDecimal(txtSum.Text);
-            decimal newBalance = (balance + sum);
-            var depo = payServece.DepositBalance(userId, newBalance);
-            if(depo == 1)
-            {
-                MessageBox.Show($"Ваш баланс пополнен на сумму {txtSum.Text}. Баланс = {newBalance}");
-                Close();
-            }
-
-        }
-        private void btnOkWithdraw_Click(object sender, RoutedEventArgs e)
-        {
-            IKernel kernel = new StandardKernel();
-            PayService payServece = kernel.Get<PayService>();
-            
-            var sum = ParceDecimal(txtSum.Text);
-            if(balance > sum)
-            {
-                decimal newBalance = (balance - sum);
-                var with = payServece.WithdrawBalance(userId, newBalance);
-                if (with == 1)
-                {
-                    MessageBox.Show($"С вашего баланса снято - {txtSum.Text}. Баланс = {newBalance}");
-                    Close();
-                }
-            }
-            else { MessageBox.Show("Недостаточно средств"); } 
-        }
-
         private decimal ParceDecimal(string str)
         {
             NumberFormatInfo nfi = new NumberFormatInfo() { NumberDecimalSeparator = "." };
 
-            if (decimal.TryParse(str, NumberStyles.Number, nfi, out decimal result))
-            { }
-            return result;
+            if (decimal.TryParse(str, NumberStyles.Number, nfi, out decimal result)){ }return result;
         }
     }
 }
