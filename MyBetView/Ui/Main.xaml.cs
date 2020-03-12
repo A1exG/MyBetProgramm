@@ -60,6 +60,13 @@ namespace MyBetView.Ui
                 addNewEvent.Owner = this;
                 addNewEvent.ShowDialog();
             };
+
+            btnHistiryEvent.Click += (s, e) =>
+            {
+                var historyEvent = new HistoryEventUi();
+                historyEvent.Owner = this;
+                historyEvent.ShowDialog();
+            };
         }
     }
 }

@@ -101,12 +101,11 @@ namespace MyBetView.Ui
 
                 if (fc is TextBlock)
                 {
-                    if(col.Header.ToString() == "Коэф Команда 1"
-                        || col.Header.ToString() == "Коэф Команда 2")
+                    if(col.Header.ToString() == "Коэф Команда 1")
                     {
+                        txtTeam.Text = ((EventBet)currentIem).Team1;
                         txtelement.Text = (fc as TextBlock).Text;
                         CheckColumn(FocusEventId);
-                        Team();
 
                         if (CheckBalance() == 1)
                         {
@@ -121,12 +120,35 @@ namespace MyBetView.Ui
                                 {
                                     var summ = resultSum;
                                     var result = (coeff * summ);
-                                    txtSumWinBet.Text = result.ToString(nfi);  
+                                    txtSumWinBet.Text = result.ToString(nfi);
                                 }
                             }
                         }
-                        else {MessageBox.Show("Недостаточно средств");}
-                    }  
+                    }
+                    else if(col.Header.ToString() == "Коэф Команда 2")
+                    {
+                        txtTeam.Text = ((EventBet)currentIem).Team2;
+                        txtelement.Text = (fc as TextBlock).Text;
+                        CheckColumn(FocusEventId);
+
+                        if (CheckBalance() == 1)
+                        {
+                            if (txtSumBet.Text == "0")
+                            {
+                                txtSumBet.Text = MinSumBet.ToString();
+                            }
+                            if (decimal.TryParse(txtelement.Text, NumberStyles.Number, nfi, out decimal resultElem))
+                            {
+                                var coeff = resultElem;
+                                if (decimal.TryParse(txtSumBet.Text, NumberStyles.Number, nfi, out decimal resultSum))
+                                {
+                                    var summ = resultSum;
+                                    var result = (coeff * summ);
+                                    txtSumWinBet.Text = result.ToString(nfi);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -161,7 +183,7 @@ namespace MyBetView.Ui
 
             if (UserBalance > MinSumBet)
             {
-                if(txtSumBet.Text != null)
+                if(txtSumBet.Text != "")
                 {
                     if (decimal.TryParse(txtSumBet.Text, NumberStyles.Number, nfi, out decimal result))
                     {
@@ -174,6 +196,7 @@ namespace MyBetView.Ui
                     }
                 }
                 MessageBox.Show("Введите сумму ставки. Минимальная ставка 100");
+                txtSumBet.Text = "100";
             }
             return 2;
         }
@@ -184,12 +207,6 @@ namespace MyBetView.Ui
             if (decimal.TryParse(str, NumberStyles.Number, nfi, out decimal result))
             {}
             return result;
-        }
-
-        public void Team()
-        {
-            var team = txtTeam.Text.Remove(0, 5);
-            txtTeam.Text = team;
         }
     }
 }

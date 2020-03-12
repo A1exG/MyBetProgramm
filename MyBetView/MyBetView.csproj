@@ -181,6 +181,9 @@
     <Compile Include="Ui\HistoryBetsUi.xaml.cs">
       <DependentUpon>HistoryBetsUi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\HistoryEventUi.xaml.cs">
+      <DependentUpon>HistoryEventUi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ui\AddResultUi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\HistoryEventUi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,5 +22,7 @@ namespace MyBetService
 
         [OperationContract]
         IList<Bet> GetBetId(int betId);
+
+        IList<History> GetHistories();
     }
 }

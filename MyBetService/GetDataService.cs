@@ -51,5 +51,15 @@ namespace MyBetService
                 return betL;
             }
         }
+
+        public IList<History> GetHistories()
+        {
+            using (var db = new MyDbContext())
+            {
+                List<History> historyL =
+                    db.Histories.ToList();
+                return historyL;
+            }
+        }
     }
 }
