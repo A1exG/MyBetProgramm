@@ -1,6 +1,7 @@
 ﻿using MyBetModel.Model;
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -67,7 +68,6 @@ namespace MyBetService
             {
                 using (var db = new MyDbContext())
                 {
-                    NumberFormatInfo nfi = new NumberFormatInfo() { NumberDecimalSeparator = "." };
                     var user = db.Users.FirstOrDefault(c => c.UserId == userId);
 
                     user.Balance = newBalance;
@@ -82,6 +82,53 @@ namespace MyBetService
                 logger.Error(ex, "Ошибка");
                 return 0;
             }
+        }
+
+        public void GetBetPayment(EventBet evB)
+        {
+            try
+            {
+                using (var db = new MyDbContext())
+                {
+                    List<Bet> betL = 
+                       db.Bets
+                       .Where(b => b.EventId == evB.EventId )
+                       .ToList();
+                    foreach (Bet bet in betL)
+                    {
+                        using (var dbb = new MyDbContext())
+                        {
+                            List<User> userL =
+                               dbb.Users
+                               .Where(b => b.UserId == bet.UserId)
+                               .ToList();
+                            foreach (User user in userL)
+                            {
+                                using (var dB = new MyDbContext())
+                                {
+                                    List<History> historyL =
+                                        dB.Histories
+                                        .ToList();
+                                    foreach (History history in historyL)
+                                    {
+                                        if (bet.UserId == user.UserId && bet.EventId == evB.EventId  && bet.Team == history.Winner && evB.EventId == history.EventId && bet.EventId == history.EventId)
+                                        {
+                                            user.Balance = user.Balance + bet.SumWinBet;
+                                            db.Users.Update(user);
+                                            db.SaveChanges();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Ошибка");
+            }
+
         }
     }
 }

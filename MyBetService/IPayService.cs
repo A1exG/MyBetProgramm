@@ -17,6 +17,10 @@ namespace MyBetService
         int DepositBalance(int userId, decimal newBalance);
         [OperationContract]
         int WithdrawBalance(int userId, decimal newBalance);
+        [OperationContract]
+
+        void GetBetPayment(EventBet evB);
+
 
     }
 }

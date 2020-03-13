@@ -7,6 +7,7 @@ namespace MyBetModel.Model
     public class History
     {
         [DataMember]
+        public int HistoryId { get; set; }
         public int EventId { get; set; }
         [DataMember]
         public DateTime DateEvent { get; set; }

@@ -22,7 +22,7 @@ namespace MyBetService
             modelBuilder.Entity<EventBet>().ToTable("Events").HasKey(p => p.EventId);
             modelBuilder.Entity<Result>().ToTable("Results").HasKey(p => p.ResultId);
             modelBuilder.Entity<User>().ToTable("Users").HasKey(p => p.UserId);
-            modelBuilder.Entity<History>().ToTable("History").HasKey(p => p.EventId);
+            modelBuilder.Entity<History>().ToTable("Historyes").HasKey(p => p.HistoryId);
         }
     }
 }

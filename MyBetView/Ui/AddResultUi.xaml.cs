@@ -18,6 +18,7 @@ namespace MyBetView.Ui
             IKernel kernel = new StandardKernel();
             GetDataService getDataService = kernel.Get<GetDataService>();
             BetService betService = kernel.Get<BetService>();
+            PayService payService = kernel.Get<PayService>();
 
 
             dgvResult.Loaded += (s, e) =>
@@ -47,7 +48,7 @@ namespace MyBetView.Ui
 
             dgvResult.SelectionChanged += (s, e) =>
             {
-                if(dgvResult.SelectedItem != null)
+                if (dgvResult.SelectedItem != null)
                 {
                     if (dgvResult.SelectedItem is EventBet)
                     {
@@ -56,42 +57,41 @@ namespace MyBetView.Ui
                         cBox.Items.Add(evB.Team1);
                         cBox.Items.Add(evB.Team2);
                         cBox.Visibility = Visibility.Visible;
+                        txtEventId.Text = evB.EventId.ToString();
                     }
                 }
             };
 
             btnAddResult.Click += (s, e) =>
             {
-                if(txtEventId.Text == "" || cBox.Text == "") {}
+                if (cBox.Text == "") { }
                 else
                 {
-                    if(evB != null )
+                    if (evB != null)
                     {
                         var res = betService.AddEventInHistory(evB, cBox.Text);
-                        if(res)
+                        if (res)
                         {
                             var result = betService.AddResultEvent(evB, cBox.Text);
-                            if(result)
+                            if (result)
                             {
                                 MessageBox.Show("Событие перенесено в историю. Создана запись в таблице результатов");
                             }
                         }
                     }
                 }
+                payService.GetBetPayment(evB);
                 var del = betService.DeleteEvent(evB);
-                if(!del)
-                {
-                    MessageBox.Show("Что топошло не так!");
-                }
-                else
+                if (del)
                 {
                     var ItemsSource = getDataService.GetEvent();
                     dgvResult.ItemsSource = ItemsSource;
                     HeadTable();
+                    cBox.Items.Clear();
                 }
             };
 
-            btnExit.Click += (s, e) => {Close();};
+            btnExit.Click += (s, e) => { Close(); };
         }
         public void HeadTable()
         {
@@ -102,5 +102,7 @@ namespace MyBetView.Ui
             dgvResult.Columns[4].Header = "Команда 2";
             dgvResult.Columns[5].Header = "Коэф Команда 2";
         }
+
+
     }
 }

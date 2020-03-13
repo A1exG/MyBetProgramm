@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyBetView.Ui"
         mc:Ignorable="d"
-        Title="События" Height="435" Width="660.5">
+        Title="События" Height="430" Width="580.5">
     <Grid Margin="0,0,0,30">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="436*"/>
             <ColumnDefinition Width="357*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid SelectionUnit="Cell" SelectionMode="Single" SelectedCellsChanged="DgvEvents_SelectedCellsChanged"  x:Name="dgvEvents" IsReadOnly="True" HorizontalAlignment="Left" Height="194" Margin="10,10,0,0" VerticalAlignment="Top" Width="632" Grid.ColumnSpan="2" />
+        <DataGrid SelectionUnit="Cell" SelectionMode="Single" SelectedCellsChanged="DgvEvents_SelectedCellsChanged"  x:Name="dgvEvents" IsReadOnly="True" HorizontalAlignment="Left" Height="187" Margin="10,10,0,0" VerticalAlignment="Top" Width="556" Grid.ColumnSpan="2" />
         <Button x:Name="btnExit" Content="Назад" HorizontalAlignment="Left" Margin="13,340,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="txtelement" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="150,281,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtSumBet" Focusable="True" PreviewTextInput="txtSumBet_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="150,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
