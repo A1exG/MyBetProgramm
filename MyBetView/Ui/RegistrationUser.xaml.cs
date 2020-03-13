@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using MyBetService;
 using System.Text.RegularExpressions;
 using MyBetModel.Model;
+using NLog;
 
 namespace MyBetView.Ui
 {
@@ -18,6 +19,8 @@ namespace MyBetView.Ui
 
             IKernel kernel = new StandardKernel();
             MyUserValidator validator = kernel.Get<MyUserValidator>();
+
+            Logger logger = LogManager.GetCurrentClassLogger();
 
             btnReg.Click += (s, e) =>
             {
@@ -38,6 +41,7 @@ namespace MyBetView.Ui
                     if (userOk == 1)
                     {
                         MessageBox.Show("Вы зарегистрированны!");
+                        logger.Info($"Пользователь {user.UserId} {user.UserLogin} зарегистрировался");
                         Close();
                     }
                     else { MessageBox.Show("Что то пошло не так"); }

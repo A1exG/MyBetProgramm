@@ -50,7 +50,7 @@ namespace MyBetView.Ui
                 if (conBet == 1)
                 {
                     var pay = payService.ChangeBalance(check[0], txtSumBet.Text);
-                    if (pay == 1) { MessageBox.Show($"Ваша ставка на сумму {txtSumBet.Text} принята."); }
+                    if (pay == 1) { MessageBox.Show($"Ваша ставка на сумму {txtSumBet.Text} принята."); } //Обновление данных на форме после совершения ставки
                     else { MessageBox.Show("Ставка не принята"); }
                 }
                 else { MessageBox.Show("Ставка не принята"); }
