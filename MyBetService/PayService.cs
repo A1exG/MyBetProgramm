@@ -90,37 +90,33 @@ namespace MyBetService
             {
                 using (var db = new MyDbContext())
                 {
-                    List<Bet> betL = 
+                    List<Bet> betL =
                        db.Bets
-                       .Where(b => b.EventId == evB.EventId )
+                       .Where(b => b.EventId == evB.EventId)
                        .ToList();
                     foreach (Bet bet in betL)
                     {
-                        using (var dbb = new MyDbContext())
+                        List<User> userL =
+                           db.Users
+                           .Where(b => b.UserId == bet.UserId)
+                           .ToList();
+                        foreach (User user in userL)
                         {
-                            List<User> userL =
-                               dbb.Users
-                               .Where(b => b.UserId == bet.UserId)
-                               .ToList();
-                            foreach (User user in userL)
+                            List<History> historyL =
+                                db.Histories
+                                .ToList();
+                            foreach (History history in historyL)
                             {
-                                using (var dB = new MyDbContext())
+                                if (bet.UserId == user.UserId && bet.EventId == evB.EventId && bet.Team == history.Winner && evB.EventId == history.EventId && bet.EventId == history.EventId)
                                 {
-                                    List<History> historyL =
-                                        dB.Histories
-                                        .ToList();
-                                    foreach (History history in historyL)
-                                    {
-                                        if (bet.UserId == user.UserId && bet.EventId == evB.EventId  && bet.Team == history.Winner && evB.EventId == history.EventId && bet.EventId == history.EventId)
-                                        {
-                                            user.Balance = user.Balance + bet.SumWinBet;
-                                            db.Users.Update(user);
-                                            db.SaveChanges();
-                                        }
-                                    }
+                                    user.Balance = user.Balance + bet.SumWinBet;
+                                    db.Users.Update(user);
+                                    db.SaveChanges();
                                 }
                             }
+
                         }
+
                     }
                 }
             }
